@@ -24,4 +24,4 @@ class River(IContainsAnimals, IContainsPlants, Identifiable):
             if plant.freshwater and plant.requires_current:
                 self.plants.append(plant)
         except AttributeError:
-            raise AttributeError("Cannot add plants that require brackish water or stagnant water to a river biome")
+            raise AttributeError("Cannot add plants that require  water or stagnant water to a river biome")
