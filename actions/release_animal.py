@@ -30,7 +30,6 @@ def release_animal(arboretum):
 
         if len(arboretum.rivers) > 0:
             for index, river in enumerate(arboretum.rivers):
-                print(f'{index + 1}. River {river.id}')
                 num = index + 2
 
         if len(arboretum.coastlines) > 0:

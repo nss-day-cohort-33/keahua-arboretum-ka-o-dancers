@@ -1,4 +1,4 @@
-from .aquatic import IAquatic
+from interfaces.aquatic import IAquatic
 
 class IStagnant(IAquatic):
 
