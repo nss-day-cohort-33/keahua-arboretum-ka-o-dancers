@@ -2,10 +2,10 @@ from interfaces import IAquatic
 from interfaces import Identifiable
 from interfaces import IContainsAnimals
 from interfaces import IContainsPlants
-# from animals import RiverDolphin
+from animals import RiverDolphin
 
 
-class Swamp(IContainsAnimals, IContainsPlants, Identifiable):
+class Coastline(IContainsAnimals, IContainsPlants, Identifiable):
 
     def __init__(self):
       IContainsAnimals.__init__(self)
