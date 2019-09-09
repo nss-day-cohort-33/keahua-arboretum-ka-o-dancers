@@ -15,7 +15,6 @@ def release_animal(arboretum):
 
     if choice == "2":
         animal = RiverDolphin()
-
         for index, river in enumerate(arboretum.rivers):
             print(f'{index + 1}. River {river.id}')
 
