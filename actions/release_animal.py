@@ -26,23 +26,37 @@ def release_animal(arboretum):
 
     if choice == "2":
         animal = RiverDolphin()
-        num = 0
+        new_list = []
+
 
         if len(arboretum.rivers) > 0:
             for index, river in enumerate(arboretum.rivers):
-                num = index + 2
+                new_list.append({"index": index,
+                                  "id": river.id,
+                                  "type": "River"              })
+
 
         if len(arboretum.coastlines) > 0:
             for index, coastline in enumerate(arboretum.coastlines):
-                print(f'{index + num}. Coastline {coastline.id}')
+                new_list.append({"index": index,
+                                  "id": coastline.id,
+                                  "type": "Coastline"})
 
 
-        print("Release the animal into which biome?")
+        for index, biome in enumerate(new_list):
+            print(f'{index + 1}. {biome}')
+
         choice = input("> ")
-        if "River" in str:
-            arboretum.rivers[int(choice) - 1].animals.append(animal)
+        choice = new_list[int(choice) - 1]
+        print(choice)
+
+
+        if choice["type"] == "River":
+            arboretum.rivers[int(choice["index"])].animals.append(animal)
         else:
-            arboretum.coastlines[int(choice) - num].animals.append(animal)
+            arboretum.coastlines[int(choice["index"])].animals.append(animal)
+
+
 
     if choice == "3":
         animal = NeneGoose()
