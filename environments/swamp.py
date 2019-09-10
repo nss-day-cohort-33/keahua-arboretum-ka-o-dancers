@@ -1,23 +1,27 @@
 from interfaces import IAquatic
 from interfaces import Identifiable
+from interfaces import IStagnant
 from interfaces import IContainsAnimals
 from interfaces import IContainsPlants
-# from animals import RiverDolphin
 
 
-class Swamp(IContainsAnimals, IContainsPlants, Identifiable):
+class Swamp(IContainsAnimals, IContainsPlants, IStagnant, Identifiable):
 
     def __init__(self):
       IContainsAnimals.__init__(self)
       IContainsPlants.__init__(self)
       Identifiable.__init__(self)
+      IStagnant.__init__(self)
+      self.plant_max = 12
+      self.animal_max = 8
 
     def add_animal(self, animal):
-        try:
-            if animal.aquatic and animal.cell_type == "hypertonic":
+            if len(self.animals) < self.animal_max:
                 self.animals.append(animal)
-        except AttributeError:
-            raise AttributeError("Cannot add non-aquatic, or saltwater animals to a river")
+            elif len(self.animals) >= self.animal_max:
+                print("Too many animals, FOOL")
+                input("press any key to continue")
+
 
     def add_plant(self, plant):
         try:
