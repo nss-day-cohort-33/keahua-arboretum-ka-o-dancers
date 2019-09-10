@@ -12,7 +12,7 @@ class River(IContainsAnimals, IContainsPlants, Identifiable):
       IContainsPlants.__init__(self)
       Identifiable.__init__(self)
       self.plant_max = 6
-      self.animal_max = 12
+      self.animal_max = 2
 
     def add_animal(self, animal):
             if len(self.animals) < self.animal_max:
