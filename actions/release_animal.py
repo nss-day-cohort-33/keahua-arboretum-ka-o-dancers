@@ -40,7 +40,7 @@ def release_animal(arboretum):
             for index, coastline in enumerate(arboretum.coastlines):
                 new_list.append({"index": index,
                                   "id": coastline.id,
-                                  "type": "Coastline"})
+                                   "type": "Coastline"})
 
 
         for index, biome in enumerate(new_list):
