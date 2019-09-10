@@ -1,8 +1,9 @@
 def build_facility_report(arboretum):
+    line_width = 20
     for river in arboretum.rivers:
         print(f'River [{river.id}]')
         for animal in river.animals:
-            print(animal.species, animal.id)
+            print(f'    ' + animal.species,f'({animal.id})')
     for coastline in arboretum.coastlines:
         print(f'Coastline [{coastline.id}] [{coastline.animals}]')
 
