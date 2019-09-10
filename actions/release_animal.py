@@ -33,26 +33,42 @@ def release_animal(arboretum):
             for index, river in enumerate(arboretum.rivers):
                 new_list.append({"index": index,
                                   "id": river.id,
-                                  "type": "River"              })
+                                  "type": "River",
+                                  "animals": river.animals,
+                                  "animal_max": river.animal_max
+                                })
 
 
         if len(arboretum.coastlines) > 0:
             for index, coastline in enumerate(arboretum.coastlines):
                 new_list.append({"index": index,
                                   "id": coastline.id,
-                                  "type": "Coastline"})
+                                  "type": "Coastline",
+                                  "animals": coastline.animals,
+                                  "animal_max": coastline.animal_max
+                                })
 
 
         for index, biome in enumerate(new_list):
-            print(f'{index + 1}. {biome}')
+            print(f'{index + 1}. {biome["type"]} ({len(biome["animals"])} animals) ')
 
+        print("Where would you like to place the animal?")
         choice = input("> ")
         choice = new_list[int(choice) - 1]
-        print(choice)
-
 
         if choice["type"] == "River":
-            arboretum.rivers[int(choice["index"])].animals.append(animal)
+            if len(choice["animals"]) < choice["animal_max"]:
+                arboretum.rivers[int(choice["index"])].add_animal((animal))
+            else:
+                print("NOOOO")
+                input("Press any key to continue")
+                for index, biome in enumerate(new_list):
+                    print(f'{index + 1}. {biome["type"]} ({len(biome["animals"])} animals) ')
+
+                print("Where would you like to place the animal?")
+                choice = input("> ")
+                choice = new_list[int(choice) - 1]
+                arboretum.rivers[int(choice["index"])].add_animal((animal))
         else:
             arboretum.coastlines[int(choice["index"])].animals.append(animal)
 
