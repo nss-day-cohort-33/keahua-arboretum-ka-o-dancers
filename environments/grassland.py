@@ -17,7 +17,7 @@ class Grassland(IContainsAnimals, IContainsPlants, Identifiable):
             if len(self.animals) < self.animal_max:
                 self.animals.append(animal)
             elif len(self.animals) >= self.animal_max:
-                print("Too many animals, FOOL")
+                print("Too many animals, in grassland")
                 input("press any key to continue")
 
 
