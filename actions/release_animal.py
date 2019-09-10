@@ -20,7 +20,6 @@ def print_biome(new_list):
 
 def check_capacity(choice):
     if len(choice["animals"]) < choice["animal_max"]:
-        # biome[int(choice["index"])].add_animal((animal))
         return True
     return False
 
