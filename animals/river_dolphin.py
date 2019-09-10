@@ -1,5 +1,6 @@
 from animals import Animal
-from interfaces.animal import IFreshwater
+from interfaces import IFreshwater
+from interfaces import ISwimming
 from interfaces import Identifiable
 
 class RiverDolphin(Animal, IFreshwater, Identifiable):
@@ -7,6 +8,7 @@ class RiverDolphin(Animal, IFreshwater, Identifiable):
     def __init__(self):
         Animal.__init__(self, "River dolphin")
         IFreshwater.__init__(self)
+        ISwimming.__init__(self)
         Identifiable.__init__(self)
         self.__prey = { "Trout", "Mackarel", "Salmon", "Sardine" }
 
