@@ -9,7 +9,16 @@ from animals import Opeapea
 
 def print_biome(new_list):
     for index, biome in enumerate(new_list):
-        print(f'{index + 1}. {biome["type"]} ({len(biome["animals"])} animals) ')
+        species_count = list()
+        species_list = list()
+        if len(biome["animals"]) > 0:
+            for animal in biome["animals"]:
+                species_list.append(animal.species)
+            for species in set(species_list):
+                species_count.append(f"{str(species_list.count(species))} {species}")
+            print(f'{index + 1}. {biome["type"]} ({", ".join(species_count)}) ')
+        else:
+            print(f'{index + 1}. {biome["type"]} ({len(biome["animals"])} animals) ')
 
     print("Where would you like to place the animal?")
     choice = input("> ")
