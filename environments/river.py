@@ -12,7 +12,7 @@ class River(IContainsAnimals, IContainsPlants, Identifiable):
       IContainsPlants.__init__(self)
       Identifiable.__init__(self)
       self.plant_max = 6
-      self.animal_max = 12
+      self.animal_max = 2
 
     def add_animal(self, animal):
             if len(self.animals) < self.animal_max:
@@ -27,4 +27,4 @@ class River(IContainsAnimals, IContainsPlants, Identifiable):
             if plant.freshwater and plant.requires_current:
                 self.plants.append(plant)
         except AttributeError:
-            raise AttributeError("Cannot add plants that require brackish water or stagnant water to a river biome")
+            raise AttributeError("Cannot add plants that require  water or stagnant water to a river biome")

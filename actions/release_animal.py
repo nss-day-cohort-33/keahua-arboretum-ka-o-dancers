@@ -16,13 +16,13 @@ def print_biome(new_list):
     choice = new_list[int(choice) - 1]
     return choice
 
-
-
 def check_capacity(choice):
     if len(choice["animals"]) < choice["animal_max"]:
         return True
+    else:
+        print("**** That biome is not large enought ****")
+        print("**** Please choose another one ****")
     return False
-
 
 def release_animal(arboretum):
     animal = None
@@ -35,23 +35,32 @@ def release_animal(arboretum):
     print("6. Ulae")
     print("7. Ope'ape'a")
     print("8. Happy-Face Spider")
+
     choice = input("Choose animal to release > ")
 
     if choice == "1":
         animal = DayGecko()
+        new_list = []
 
-        for index, forest in enumerate(arboretum.forests):
-            print(f'{index + 1}. Forest {forest.id}')
+        if len(arboretum.forests) > 0:
+            for index, forest in enumerate(arboretum.forests):
+                new_list.append({"index": index,
+                                  "id": forest.id,
+                                  "type": "Forest",
+                                  "animals": forest.animals,
+                                  "animal_max": forest.animal_max
+                                })
+        valid = False
+        while valid == False:
+            choice = print_biome(new_list)
+            valid = check_capacity(choice)
 
-        print("Release the animal into which biome?")
-        choice = input("> ")
-
-        arboretum.forests[int(choice) - 1].animals.append(animal)
+        if choice["type"] == "Forest" and valid:
+            arboretum.forests[int(choice["index"])].add_animal((animal))
 
     if choice == "2":
         animal = RiverDolphin()
         new_list = []
-
 
         if len(arboretum.rivers) > 0:
             for index, river in enumerate(arboretum.rivers):
@@ -72,95 +81,20 @@ def release_animal(arboretum):
                                   "animal_max": coastline.animal_max
                                 })
 
+        valid = False
+        while valid == False:
+            choice = print_biome(new_list)
+            valid = check_capacity(choice)
 
-        for index, biome in enumerate(new_list):
-            print(f'{index + 1}. {biome["type"]} ({len(biome["animals"])} animals) ')
+        if choice["type"] == "River" and valid:
+            arboretum.rivers[int(choice["index"])].add_animal((animal))
 
-        print("Where would you like to place the animal?")
-        choice = input("> ")
-        choice = new_list[int(choice) - 1]
-
-        if choice["type"] == "River":
-            if len(choice["animals"]) < choice["animal_max"]:
-                arboretum.rivers[int(choice["index"])].add_animal((animal))
-            else:
-                print("NOOOO")
-                input("Press any key to continue")
-                for index, biome in enumerate(new_list):
-                    print(f'{index + 1}. {biome["type"]} ({len(biome["animals"])} animals) ')
-
-                print("Where would you like to place the animal?")
-                choice = input("> ")
-                choice = new_list[int(choice) - 1]
-                arboretum.rivers[int(choice["index"])].add_animal((animal))
-        else:
-            arboretum.coastlines[int(choice["index"])].animals.append(animal)
-
-
+        elif choice["type"] == "Coastline" and valid:
+            arboretum.coastlines[int(choice["index"])].add_animal((animal))
 
     if choice == "3":
         animal = NeneGoose()
-
-        for index, grassland in enumerate(arboretum.grasslands):
-            print(f'{index + 1}. Grassland {grassland.id}')
-
-        print("Release the animal into which biome?")
-        choice = input("> ")
-
-        arboretum.grasslands[int(choice) - 1].animals.append(animal)
-
-    if choice == "4":
-        animal = Kikakapu()
         new_list = []
-
-
-        if len(arboretum.rivers) > 0:
-            for index, river in enumerate(arboretum.rivers):
-                new_list.append({"index": index,
-                                  "id": river.id,
-                                  "type": "River",
-                                  "animals": river.animals,
-                                  "animal_max": river.animal_max
-                                })
-
-
-        if len(arboretum.swamps) > 0:
-            for index, swamp in enumerate(arboretum.swamps):
-                new_list.append({"index": index,
-                                  "id": swamp.id,
-                                  "type": "Swamp",
-                                  "animals": swamp.animals,
-                                  "animal_max": swamp.animal_max
-                                })
-
-
-        for index, biome in enumerate(new_list):
-            print(f'{index + 1}. {biome["type"]} ({len(biome["animals"])} animals) ')
-
-        print("Where would you like to place the animal?")
-        choice = input("> ")
-        choice = new_list[int(choice) - 1]
-
-        if choice["type"] == "River":
-            if len(choice["animals"]) < choice["animal_max"]:
-                arboretum.rivers[int(choice["index"])].add_animal((animal))
-            else:
-                print("NOOOO")
-                input("Press any key to continue")
-                for index, biome in enumerate(new_list):
-                    print(f'{index + 1}. {biome["type"]} ({len(biome["animals"])} animals) ')
-
-                print("Where would you like to place the animal?")
-                choice = input("> ")
-                choice = new_list[int(choice) - 1]
-                arboretum.rivers[int(choice["index"])].add_animal((animal))
-        else:
-            arboretum.swamps[int(choice["index"])].animals.append(animal)
-
-    if choice == "5":
-        animal = Pueo()
-        new_list = []
-
 
         if len(arboretum.grasslands) > 0:
             for index, grassland in enumerate(arboretum.grasslands):
@@ -171,6 +105,59 @@ def release_animal(arboretum):
                                   "animal_max": grassland.animal_max
                                 })
 
+        valid = False
+        while valid == False:
+            choice = print_biome(new_list)
+            valid = check_capacity(choice)
+
+        if choice["type"] == "Grassland" and valid:
+            arboretum.grasslands[int(choice["index"])].add_animal((animal))
+
+    if choice == "4":
+        animal = Kikakapu()
+        new_list = []
+
+        if len(arboretum.rivers) > 0:
+            for index, river in enumerate(arboretum.rivers):
+                new_list.append({"index": index,
+                                  "id": river.id,
+                                  "type": "River",
+                                  "animals": river.animals,
+                                  "animal_max": river.animal_max
+                                })
+
+        if len(arboretum.swamps) > 0:
+            for index, swamp in enumerate(arboretum.swamps):
+                new_list.append({"index": index,
+                                  "id": swamp.id,
+                                  "type": "Swamp",
+                                  "animals": swamp.animals,
+                                  "animal_max": swamp.animal_max
+                                })
+
+        valid = False
+        while valid == False:
+            choice = print_biome(new_list)
+            valid = check_capacity(choice)
+
+        if choice["type"] == "River" and valid:
+            arboretum.rivers[int(choice["index"])].add_animal((animal))
+
+        elif choice["type"] == "Swamp" and valid:
+            arboretum.swamps[int(choice["index"])].add_animal((animal))
+
+    if choice == "5":
+        animal = Pueo()
+        new_list = []
+
+        if len(arboretum.grasslands) > 0:
+            for index, grassland in enumerate(arboretum.grasslands):
+                new_list.append({"index": index,
+                                  "id": grassland.id,
+                                  "type": "Grassland",
+                                  "animals": grassland.animals,
+                                  "animal_max": grassland.animal_max
+                                })
 
         if len(arboretum.forests) > 0:
             for index, forest in enumerate(arboretum.forests):
@@ -180,6 +167,7 @@ def release_animal(arboretum):
                                   "animals": forest.animals,
                                   "animal_max": forest.animal_max
                                 })
+
         valid = False
         while valid == False:
             choice = print_biome(new_list)
@@ -193,39 +181,76 @@ def release_animal(arboretum):
 
     if choice == "6":
         animal = Ulae()
+        new_list = []
+        if len(arboretum.coastlines) > 0:
+            for index, coastline in enumerate(arboretum.coastlines):
+                new_list.append({"index": index,
+                                  "id": coastline.id,
+                                  "type": "Coastline",
+                                  "animals": coastline.animals,
+                                  "animal_max": coastline.animal_max
+                                })
+        valid = False
+        while valid == False:
+            choice = print_biome(new_list)
+            valid = check_capacity(choice)
 
-        for index, coastline in enumerate(arboretum.coastlines):
-            print(f'{index + 1}. Coastline {coastline.id}')
-
-        print("Release the animal into which biome?")
-        choice = input("> ")
-
-        arboretum.coastlines[int(choice) - 1].animals.append(animal)
+        if choice["type"] == "Coastline" and valid:
+            arboretum.coastlines[int(choice["index"])].add_animal((animal))
 
     if choice == "7":
         animal = Opeapea()
-        # biome = forest/mountain
-        for index, forest in enumerate(arboretum.forests):
-            print(f'{index + 1}. Forest {forest.id}')
+        new_list = []
 
-        for index, mountain in enumerate(arboretum.mountains):
-            print(f'{index + 1}. Mountain {mountain.id}')
+        if len(arboretum.forests) > 0:
+            for index, forest in enumerate(arboretum.forests):
+                new_list.append({"index": index,
+                                  "id": forest.id,
+                                  "type": "Forest",
+                                  "animals": forest.animals,
+                                  "animal_max": forest.animal_max
+                                })
 
-        print("Release the animal into which biome?")
-        choice = input("> ")
+        if len(arboretum.mountains) > 0:
+            for index, mountain in enumerate(arboretum.mountains):
+                new_list.append({"index": index,
+                                  "id": mountain.id,
+                                  "type": "Mountain",
+                                  "animals": mountain.animals,
+                                  "animal_max": mountain.animal_max
+                                })
 
-        arboretum.forests[int(choice) - 1].animals.append(animal)
+        valid = False
+        while valid == False:
+            choice = print_biome(new_list)
+            valid = check_capacity(choice)
+
+        if choice["type"] == "Forest" and valid:
+            arboretum.forests[int(choice["index"])].add_animal((animal))
+
+        elif choice["type"] == "Mountain" and valid:
+            arboretum.mountains[int(choice["index"])].add_animal((animal))
 
     if choice == "8":
         animal = HappyFaceSpider()
+        new_list = []
 
-        for index, swamp in enumerate(arboretum.swamps):
-            print(f'{index + 1}. Swamp {swamp.id}')
+        if len(arboretum.swamps) > 0:
+            for index, swamp in enumerate(arboretum.swamps):
+                new_list.append({"index": index,
+                                  "id": swamp.id,
+                                  "type": "Swamp",
+                                  "animals": swamp.animals,
+                                  "animal_max": swamp.animal_max
+                                })
 
-        print("Release the animal into which biome?")
-        choice = input("> ")
+        valid = False
+        while valid == False:
+            choice = print_biome(new_list)
+            valid = check_capacity(choice)
 
-        arboretum.swamps[int(choice) - 1].animals.append(animal)
+        if choice["type"] == "Swamp" and valid:
+            arboretum.swamps[int(choice["index"])].add_animal((animal))
 
 
 
