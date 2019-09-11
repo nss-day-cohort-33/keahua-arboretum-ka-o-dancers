@@ -12,16 +12,17 @@ class Kikakapu(Animal, IFreshwater, IStagnant, ISwimming, Identifiable):
         IStagnant.__init__(self)
         ISwimming.__init__(self)
         Identifiable.__init__(self)
-        self.__prey = { "Coral", "Algae", "Shrimp", "Mollusk" }
+        self.prey = [ "Coral", "Algae", "Shrimp", "Mollusk" ]
         self.min_release_age = 1
 
 
-    @property
-    def prey(self):
-        return self.__prey
+    def list_prey(self):
+        for index, prey in enumerate(self.prey):
+            print(f'{index + 1}. {prey} ')
+
 
     def feed(self, prey):
-        if prey in self.__prey:
+        if prey in self.prey:
             print(f'The Kikakapu ate {prey} for a meal')
         else:
             print(f'The Kikakapu rejects the {prey}')

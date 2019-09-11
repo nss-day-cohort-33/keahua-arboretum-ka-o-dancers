@@ -10,14 +10,16 @@ class RiverDolphin(Animal, IFreshwater, Identifiable):
         IFreshwater.__init__(self)
         ISwimming.__init__(self)
         Identifiable.__init__(self)
-        self.__prey = { "Trout", "Mackarel", "Salmon", "Sardine" }
+        self.prey = [ "Trout", "Mackarel", "Salmon", "Sardine" ]
+        self.min_release_age = 13
 
-    @property
-    def prey(self):
-        return self.__prey
+
+    def list_prey(self):
+        for index, prey in enumerate(self.prey):
+            print(f'{index + 1}. {prey} ')
 
     def feed(self, prey):
-        if prey in self.__prey:
+        if prey in self.prey:
             print(f'The dolphin ate {prey} for a meal')
         else:
             print(f'The dolphin rejects the {prey}')

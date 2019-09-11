@@ -8,16 +8,16 @@ class Opeapea(Animal, IFlying, Identifiable):
         Animal.__init__(self, "Ope'ape'a")
         IFlying.__init__(self)
         Identifiable.__init__(self)
-        self.__prey = { "Fruit", "Flowers", "Grasshopper", "Fruit Fly" }
+        self.prey = [ "Fruit", "Flowers", "Grasshopper", "Fruit Fly" ]
         self.min_release_age = 5
 
 
-    @property
-    def prey(self):
-        return self.__prey
+    def list_prey(self):
+        for index, prey in enumerate(self.prey):
+            print(f'{index + 1}. {prey} ')
 
     def feed(self, prey):
-        if prey in self.__prey:
+        if prey in self.prey:
             print(f'The opeapea ate {prey} for a meal')
         else:
             print(f'The opeapea rejects the {prey}')
