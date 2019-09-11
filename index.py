@@ -10,6 +10,8 @@ keahua = Arboretum("Keahua Arboretum", "123 Paukauila Lane")
 
 def build_menu():
     os.system('cls' if os.name == 'nt' else 'clear')
+    print(" +-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-+ \n \033[1;31;40m|  \033[1;37;40mK  e  a  h  u  a    A  r  b  o  r  e  t  u  m  \033[1;31;40m| \n \033[1;37;40m+-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-+")
+    print("")
     print("1. Annex Biome")
     print("2. Release New Animal")
     print("3. Feed Animal")
@@ -24,7 +26,7 @@ def main_menu():
     Arguments: None
     """
     build_menu()
-    choice = input("Choose a KILLER option > ")
+    choice = input("\n Choose a KILLER option \n \033[1;31;40m> \033[1;37;40m")
 
     if choice == "1":
         annex_habitat(keahua)
