@@ -21,7 +21,11 @@ def print_biome(new_list):
 def check_capacity(choice):
     if len(choice["animals"]) < choice["animal_max"]:
         return True
+    else:
+        print("**** That biome is not large enought ****")
+        print("**** Please choose another one ****")
     return False
+
 
 
 def release_animal(arboretum):
@@ -180,6 +184,7 @@ def release_animal(arboretum):
                                   "animals": forest.animals,
                                   "animal_max": forest.animal_max
                                 })
+
         valid = False
         while valid == False:
             choice = print_biome(new_list)
@@ -190,6 +195,7 @@ def release_animal(arboretum):
 
         elif choice["type"] == "Forest" and valid:
             arboretum.forests[int(choice["index"])].add_animal((animal))
+
     if choice == "6":
         animal = Ulae()
 
