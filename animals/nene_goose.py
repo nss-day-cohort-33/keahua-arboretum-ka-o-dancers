@@ -8,16 +8,16 @@ class NeneGoose(Animal, IFlying, Identifiable):
         Animal.__init__(self, "Nene Goose")
         IFlying.__init__(self)
         Identifiable.__init__(self)
-        self.__prey = { "Grass", "Flowers", "Fruit", "Seeds" }
+        self.prey = [ "Grass", "Flowers", "Fruit", "Seeds" ]
         self.min_release_age = 7
 
 
-    @property
-    def prey(self):
-        return self.__prey
+    def list_prey(self):
+        for index, prey in enumerate(self.prey):
+            print(f'{index + 1}. {prey} ')
 
     def feed(self, prey):
-        if prey in self.__prey:
+        if prey in self.prey:
             print(f'The goose ate {prey} for a meal')
         else:
             print(f'The goose rejects the {prey}')

@@ -8,16 +8,16 @@ class Pueo(Animal, IFlying, Identifiable):
         Animal.__init__(self, "Pueo")
         IFlying.__init__(self)
         Identifiable.__init__(self)
-        self.__prey = { "Mice", "Rats", "Hamster", "Crickets" }
+        self.prey = [ "Mice", "Rats", "Hamster", "Crickets" ]
         self.min_release_age = 8
 
 
-    @property
-    def prey(self):
-        return self.__prey
+    def list_prey(self):
+        for index, prey in enumerate(self.prey):
+            print(f'{index + 1}. {prey} ')
 
     def feed(self, prey):
-        if prey in self.__prey:
+        if prey in self.prey:
             print(f'The pueo ate {prey} for a meal')
         else:
             print(f'The pueo rejects the {prey}')
