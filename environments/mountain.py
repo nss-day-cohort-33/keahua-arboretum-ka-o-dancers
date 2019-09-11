@@ -24,6 +24,6 @@ class Mountain(IContainsAnimals, IContainsPlants, Identifiable):
     def add_plant(self, plant):
             if len(self.plants) < self.plant_max:
                 self.plants.append(plant)
-            elif len(self.plants) >= self.plant_max:
+            else:
                 print("Too many plants, FOOL")
                 input("press any key to continue")
