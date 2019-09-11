@@ -11,7 +11,7 @@ class Grassland(IContainsAnimals, IContainsPlants, Identifiable):
       IContainsPlants.__init__(self)
       Identifiable.__init__(self)
       self.plant_max = 15
-      self.animal_max = 2
+      self.animal_max = 4
 
     def add_animal(self, animal):
             if len(self.animals) < self.animal_max:
