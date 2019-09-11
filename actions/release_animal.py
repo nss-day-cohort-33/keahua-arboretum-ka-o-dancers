@@ -190,6 +190,7 @@ def release_animal(arboretum):
 
         elif choice["type"] == "Forest" and valid:
             arboretum.forests[int(choice["index"])].add_animal((animal))
+
     if choice == "6":
         animal = Ulae()
 
