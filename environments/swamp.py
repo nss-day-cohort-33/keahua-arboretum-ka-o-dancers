@@ -13,7 +13,7 @@ class Swamp(IContainsAnimals, IContainsPlants, IStagnant, Identifiable):
       Identifiable.__init__(self)
       IStagnant.__init__(self)
       self.plant_max = 12
-      self.animal_max = 8
+      self.animal_max = 2
 
     def add_animal(self, animal):
             if len(self.animals) < self.animal_max:
