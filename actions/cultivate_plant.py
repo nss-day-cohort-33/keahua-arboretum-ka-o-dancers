@@ -6,7 +6,16 @@ from plants import BlueVine
 
 def print_biome(new_list):
     for index, biome in enumerate(new_list):
-        print(f'{index + 1}. {biome["type"]} ({len(biome["plants"])} plants) ')
+        species_count = list()
+        species_list = list()
+        if len(biome["plants"]) > 0:
+            for plant in biome["plants"]:
+                species_list.append(plant.species)
+            for species in set(species_list):
+                species_count.append(f"{str(species_list.count(species))} {species}")
+            print(f'{index + 1}. {biome["type"]} ({", ".join(species_count)}) ')
+        else:
+            print(f'{index + 1}. {biome["type"]} ({len(biome["plants"])} plants) ')
 
     print("Where would you like to place the plant?")
     choice = input("> ")
